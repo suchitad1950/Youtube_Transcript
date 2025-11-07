@@ -10,6 +10,7 @@ import os
 import sys
 import re
 from typing import List, Dict, Any
+from dotenv import load_dotenv
 
 # Add the src directory to the path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -217,10 +218,16 @@ def main():
     print("🧪 YouTube Advisor Evaluation Harness")
     print("=" * 50)
     
+    # Load environment variables from .env file
+    load_dotenv()
+    
     # Check for API key
     if not os.getenv('OPENAI_API_KEY'):
         print("❌ Error: OPENAI_API_KEY environment variable not set!")
-        print("Please set your OpenAI API key before running the evaluation.")
+        print("Please create a .env file in the project root with:")
+        print("OPENAI_API_KEY=your-api-key-here")
+        print("\nOr set the environment variable directly:")
+        print("export OPENAI_API_KEY=your-api-key-here")
         sys.exit(1)
     
     try:
